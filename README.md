@@ -1,7 +1,7 @@
 # docker
 ## 简单命令
-下载docker:`yum install -y docker`
-查找容器：`docker search`
+下载docker:`yum install -y docker` \
+查找容器：`docker search` \
 创建容器：`docker run -itd --name jun ubuntu /bin/bash` \
   -i:标准输入；-t：tty控制台；-d：是后台运行 \
 再次打开容器：`docker exec -itd jun /bin/bash` 或 `docker attach jun` \
@@ -15,7 +15,16 @@
 删除所有容器：`docker rm docker ps -aq` \
 删除所有镜像：`docker rm docker images -q` \
 ## 镜像构建Dockerfile
+直接生成镜像并改名：`docker commit jun01 jun01:v2` \
 镜像配置文件：Dockerfile
-### Dockerfile 
+### vim Dockerfile 
+基础镜像：`FROM nginx` \
+容器里跑命令：`RUN echo "<h1>this is docker<h2>" > /usr/share/nginx/html/index.html` \
+### 执行Dockerfile
+执行构建：`docker build -t web .` \ 
+查看过程：`docker history web` \
+绑定容器端口并挂载卷：`docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website --privileged=true ` \
+设置挂载文件权限(rw或ro)：`docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website：rw/ro --privileged=true ` \
+设置简单本地映射：`docker run -d -p 8080:80 --name jun01 jun nginx` \
 
-绑定容器端口：`docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website` \
+
