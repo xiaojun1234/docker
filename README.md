@@ -1,4 +1,4 @@
-# docker
+ # docker
 ## 简单命令
 下载docker:`yum install -y docker` \
 查找容器：`docker search` \
@@ -15,10 +15,15 @@
 删除所有容器：`docker rm docker ps -aq` \
 删除所有镜像：`docker rm docker images -q` \
 ## 镜像构建Dockerfile
-直接生成镜像并改名：`docker commit jun01 jun01:v2` \
+直接生成镜像并改名：`docker commit \
+--author "jun <jun@images.com>" \
+--message "修改了默认网页" \
+jun01 \ 
+jun01:v2` \
 镜像配置文件：Dockerfile
 ### vim Dockerfile 
 基础镜像：`FROM nginx` \
+虚悬
 容器里跑命令：`RUN echo "<h1>this is docker<h2>" > /usr/share/nginx/html/index.html` \
 ### 执行Dockerfile
 执行构建：`docker build -t web .` \ 
