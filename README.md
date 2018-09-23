@@ -1,4 +1,4 @@
- # docker
+# docker
 ## 简单命令
 下载docker:`yum install -y docker` \
 查找容器：`docker search` \
@@ -14,17 +14,26 @@
 删除镜像：`docker rmi jun01` \
 删除所有容器：`docker rm docker ps -aq` \
 删除所有镜像：`docker rm docker images -q` \
-## 镜像构建Dockerfile
-直接生成镜像并改名：`docker commit \
---author "jun <jun@images.com>" \
---message "修改了默认网页" \
-jun01 \ 
-jun01:v2` \
-镜像配置文件：Dockerfile
-### vim Dockerfile 
+## 镜像构建
+直接生成镜像并改名： \
+`docker commit` \
+`--author "jun <jun@images.com>"` \
+`--message "修改了默认网页"` \
+`jun01` \ 
+`jun01:v2` \
+使用git repo构建： \
+`docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14` \
+`docker build https://github.com/twang2218/gitlab-ce-zh.git\#8.14` \
+使用tar压缩包构建： \
+`docker build http://server/context.tar.gz` \
+从标准输入中读取Dockerfile进行构建 \
+`docker build - < Dockerfile` \
+###  镜像配置文件
+`vim Dockerfile` \ 
 基础镜像：`FROM nginx` \
-虚悬
+虚悬镜像：即空镜像 \
 容器里跑命令：`RUN echo "<h1>this is docker<h2>" > /usr/share/nginx/html/index.html` \
+复制和添加：COPY 和 ADD "都是在上下文包（context）中进行的，"
 ### 执行Dockerfile
 执行构建：`docker build -t web .` \ 
 查看过程：`docker history web` \
