@@ -29,7 +29,7 @@
 从标准输入中读取Dockerfile进行构建: \
 `docker build - < Dockerfile`
 ###  镜像配置文件
-`vim Dockerfile` \ 
+`vim Dockerfile` \
 基础镜像：`FROM nginx` \
 虚悬镜像：即空镜像 \
 容器里跑命令：`RUN echo "<h1>this is docker<h2>" > /usr/share/nginx/html/index.html` \
