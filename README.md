@@ -13,21 +13,21 @@
 删除容器：`docker rm jun` \
 删除镜像：`docker rmi jun01` \
 删除所有容器：`docker rm docker ps -aq` \
-删除所有镜像：`docker rm docker images -q` \
+删除所有镜像：`docker rm docker images -q`
 ## 镜像构建
 直接生成镜像并改名： \
 `docker commit` \
 `--author "jun <jun@images.com>"` \
 `--message "修改了默认网页"` \
-`jun01` \ 
+`jun01` \
 `jun01:v2` \
 使用git repo构建： \
 `docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14` \
 `docker build https://github.com/twang2218/gitlab-ce-zh.git\#8.14` \
 使用tar压缩包构建： \
 `docker build http://server/context.tar.gz` \
-从标准输入中读取Dockerfile进行构建 \
-`docker build - < Dockerfile` \
+从标准输入中读取Dockerfile进行构建: \
+`docker build - < Dockerfile`
 ###  镜像配置文件
 `vim Dockerfile` \ 
 基础镜像：`FROM nginx` \
@@ -37,8 +37,10 @@
 ### 执行Dockerfile
 执行构建：`docker build -t web .` \ 
 查看过程：`docker history web` \
-绑定容器端口并挂载卷：`docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website --privileged=true ` \
-设置挂载文件权限(rw或ro)：`docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website：rw/ro --privileged=true ` \
+绑定容器端口并挂载卷： \
+`docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website --privileged=true ` \
+设置挂载文件权限(rw或ro)： \
+`docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website：rw/ro --privileged=true ` \
 设置简单本地映射：`docker run -d -p 8080:80 --name jun01 jun nginx` \
 
 
