@@ -26,21 +26,30 @@
 `docker build https://github.com/twang2218/gitlab-ce-zh.git\#8.14` \
 使用tar压缩包构建： \
 `docker build http://server/context.tar.gz` \
-从标准输入中读取Dockerfile进行构建: \
-`docker build - < Dockerfile`
+### 从标准输入中读取Dockerfile进行构建:
+`docker build - < Dockerfile` \
+`docker build | docker build -`
+### 从标准输入中读取上下文压缩包进行构建:
+`docker build - < context.tar.gz`
 ###  镜像配置文件
 `vim Dockerfile` \
 基础镜像：`FROM nginx` \
 虚悬镜像：即空镜像 \
 容器里跑命令：`RUN echo "<h1>this is docker<h2>" > /usr/share/nginx/html/index.html` \
-复制和添加：COPY 和 ADD "都是在上下文包（context）中进行的，"
+复制和高级复制：COPY 和 ADD "都是在上下文包（context）中进行的" \
+`COPY pack.json /usr/src/app/` \
+ADD源路径可以是URL，多用于自动解压的复制， \
+`ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /` \
 ### 执行Dockerfile
 执行构建：`docker build -t web .` \ 
-查看过程：`docker history web` \
+查看过程：`docker history web`
+### 端口和挂载卷
 绑定容器端口并挂载卷： \
 `docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website --privileged=true ` \
 设置挂载文件权限(rw或ro)： \
 `docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website：rw/ro --privileged=true ` \
-设置简单本地映射：`docker run -d -p 8080:80 --name jun01 jun nginx` \
+设置简单本地映射：`docker run -d -p 8080:80 --name jun01 jun nginx`
+### CMD用法
+
 
 
