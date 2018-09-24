@@ -50,6 +50,9 @@ ADD源路径可以是URL，多用于自动解压的复制， \
 `docker run -d -p 80 --name jun01 jun nginx -v $PWD/website:/var/www/html/website：rw/ro --privileged=true ` \
 设置简单本地映射：`docker run -d -p 8080:80 --name jun01 jun nginx`
 ### CMD用法
+shell 格式：CMD <命令> \
+exec 格式：CMD ["可执行文件","参数1","参数2"] 
+
 
 
 
