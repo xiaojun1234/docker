@@ -66,10 +66,14 @@ Dockerfile:`ENTRYPOINT ["curl","-s","http://ip.cn"]` \
 `ENTRYPOINT ["docker-entry.sh"]` \
 `EXPOSE 6379` \
 `CMD ["redis-server"]` \
-创建脚本`vim docker-entrypoint.sh` \
+创建脚本判断是否是redis用户：`vim docker-entrypoint.sh` \
 `#!/bin/sh` \
 `if ["$1"='redis-server' -a "$(id -u)" = '0' ]; then` \
-`     chown -R redis .`
+`chown -R redis .` \
+`exec su-exec redis "$0" "$@"` \
+`fi` \
+`exec "$@"` \
+
 
 
 
