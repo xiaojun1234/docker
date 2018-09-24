@@ -72,9 +72,25 @@ Dockerfile:`ENTRYPOINT ["curl","-s","http://ip.cn"]` \
 `chown -R redis .` \
 `exec su-exec redis "$0" "$@"` \
 `fi` \
-`exec "$@"` \
-
-
+`exec "$@"`
+### 设置环境变量
+在Dockerfile设置环境变量,方便以后更新改变 \
+`ENV VERSION=1.0 DEBUG=on NAME="Happy Feet"` \
+`ARG`用法与`ENV`一样,只是在将来容器运行时不会存在这些变量,最好不要用来设置密码
+### 定义匿名卷
+`VOLUME /data` \
+运行时也可覆盖：`docker run -d -v jun0:/data xxxx` \
+### 指定工作目录
+WORKDIR可以改变以后每层的路径 \
+`WORKDIR /website(工作路径）`
+### 指定当前用户
+`USER <用户名>` \
+切换用户最好用`gosu`,出错率低,快,配置如下：
+`RUN groupadd -r redis && useradd -r -g redis redis` \
+`RUN wget -O /usr/local/bin/gosu "https；//github.com/tianon/gosu/releases/download/1.7/gosu-amd64" \` \
+`&& chmod +x /usr/local/bin/gosu \` \
+`&& gosu nobody true` \
+`CMD ["exec","gosu","redis","redis-server"]` \
 
 
 
