@@ -51,7 +51,16 @@ ADD源路径可以是URL，多用于自动解压的复制， \
 设置简单本地映射：`docker run -d -p 8080:80 --name jun01 jun nginx`
 ### CMD用法
 shell 格式：CMD <命令> \
-exec 格式：CMD ["可执行文件","参数1","参数2"] 
+exec 格式：CMD ["可执行文件","参数1","参数2"] \
+解析之后主进程是“sh”,不是“echo $HOME”, \
+`CMD echo $HOME` 相当于 `CMD ["sh","-c","echo $HOME"]` \
+启动nginx服务：CMD["nginx","-g","daemon off"] \
+### entrypoint入口点
+用法和CMD差不多,不过比CMD灵活,它可以外接参数 \
+Dockerfile:`ENTRYPOINT ["curl","-s","http://ip.cn"]` \
+`docker run jun0 -i`
+还有一个用法：用于用户服务权限问题
+
 
 
 
