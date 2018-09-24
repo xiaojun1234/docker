@@ -58,8 +58,18 @@ exec 格式：CMD ["可执行文件","参数1","参数2"] \
 ### entrypoint入口点
 用法和CMD差不多,不过比CMD灵活,它可以外接参数 \
 Dockerfile:`ENTRYPOINT ["curl","-s","http://ip.cn"]` \
-`docker run jun0 -i`
-还有一个用法：用于用户服务权限问题
+`docker run jun0 -i` \
+还有一个用法：用于用户服务权限问题 \
+`Dockerfile:` \
+`FROM alpine:3.4` \
+`RUN addgroup -S redis && adduser -S -G redis redia` \
+`ENTRYPOINT ["docker-entry.sh"]` \
+`EXPOSE 6379` \
+`CMD ["redis-server"]` \
+创建脚本`vim docker-entrypoint.sh` \
+`#!/bin/sh` \
+`if ["$1"='redis-server' -a "$(id -u)" = '0' ]; then` \
+`     chown -R redis .`
 
 
 
