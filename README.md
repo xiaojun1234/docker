@@ -25,7 +25,7 @@
 `docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14` \
 `docker build https://github.com/twang2218/gitlab-ce-zh.git\#8.14` \
 使用tar压缩包构建： \
-`docker build http://server/context.tar.gz` \
+`docker build http://server/context.tar.gz` 
 ### 从标准输入中读取Dockerfile进行构建:
 `docker build - < Dockerfile` \
 `docker build | docker build -`
@@ -39,7 +39,7 @@
 复制和高级复制：COPY 和 ADD "都是在上下文包（context）中进行的" \
 `COPY pack.json /usr/src/app/` \
 ADD源路径可以是URL，多用于自动解压的复制， \
-`ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /` \
+`ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /` 
 ### 执行Dockerfile
 执行构建：`docker build -t web .` \ 
 查看过程：`docker history web`
